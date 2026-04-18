@@ -11,7 +11,7 @@ Projeto de agendamento pro salão: cadastro com nome, telefone, serviço e horá
 
 ```bash
 cd backend
-venv: `python -m venv .venv`
+python -m venv .venv
 pip install -r requirements.txt
 python -m uvicorn main:app --reload
 ```
