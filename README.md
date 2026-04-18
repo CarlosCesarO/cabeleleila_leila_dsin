@@ -1,58 +1,23 @@
 # Cabeleleila Leila
 
-Sistema simples de agendamento para salão: o cliente cadastra nome, telefone, serviços e data/hora; pode consultar os agendamentos pelo telefone e editar quando permitido pela regra de prazo.
+Projeto de agendamento pro salão: cadastro com nome, telefone, serviço e horário; dá pra buscar pelo telefone e editar em alguns casos.
 
-## Tecnologias
+**Backend:** Python, FastAPI, SQLite (arquivo `salao.db`), Pydantic pros dados de entrada.  
+**Frontend:** React (CRA), chama a API com `fetch`. A URL da API tá no `frontend/src/api.js` (localhost:8000).
 
-| Parte        | Tecnologias                                                                                                                                                          |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Backend**  | Python 3, **FastAPI**, **Uvicorn**, **Pydantic** (modelo `Agendamento` em `schemas.py`), **SQLite** (`sqlite3`), **python-dotenv** (carrega `.env` no `database.py`) |
-| **Frontend** | **React** (Create React App), JavaScript, `fetch` para a API                                                                                                         |
+## Rodar
 
-A URL da API no desenvolvimento está em `frontend/src/api.js` (padrão: `http://localhost:8000`).
+**API** — entra na pasta `backend`, instala as coisas e sobe o uvicorn:
 
-## Como rodar o projeto
+```bash
+cd backend
+pip install -r requirements.txt
+python -m uvicorn main:app --reload
+```
 
-### Pré-requisitos
+Se quiser venv: `python -m venv .venv` e ativa antes do `pip`.
 
-- [Node.js](https://nodejs.org/) (npm incluso)
-- [Python](https://www.python.org/) 3.10 ou superior (recomendado)
-
-### Backend
-
-No terminal, a partir da pasta `backend`:
-
-1. Crie e ative um ambiente virtual (opcional, mas recomendado):
-
-   ```bash
-   cd backend
-   python -m venv .venv
-   ```
-
-   **Windows (PowerShell):** `.\.venv\Scripts\Activate.ps1`  
-   **Linux/macOS:** `source .venv/bin/activate`
-
-2. Instale as dependências:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. (Opcional) Crie o arquivo `.env` na pasta `backend` se quiser configurar variáveis (por exemplo caminho do SQLite; o arquivo não deve ser commitado — está no `.gitignore`).
-
-4. Suba o servidor:
-
-   ```bash
-   python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
-   ```
-
-A API fica em `http://localhost:8000`. Documentação interativa: `http://localhost:8000/docs`.
-
-O banco é um arquivo **SQLite** (`salao.db`), criado automaticamente na primeira execução, na pasta em que o processo do backend é iniciado (em geral `backend/`).
-
-### Frontend
-
-Em outro terminal, na pasta `frontend`:
+**Site** — outro terminal, pasta `frontend`:
 
 ```bash
 cd frontend
@@ -60,4 +25,8 @@ npm install
 npm start
 ```
 
-O navegador abre em `http://localhost:3000`. O front espera o backend na porta **8000**; se mudar a porta, ajuste `frontend/src/api.js`.
+Abre no navegador (geralmente porta 3000). O backend precisa estar rodando senão as requisições falham.
+
+O `salao.db` aparece sozinho na primeira vez. Arquivo `.env` no backend é opcional (segredo / config local), não manda pro git.
+
+Na tela de “meus agendamentos”, se o horário tá muito perto (tipo 2 dias), o sistema manda falar com a Leila em vez de editar pelo site.
