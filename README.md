@@ -1,6 +1,6 @@
 # Cabeleleila Leila
 
-Projeto de agendamento pro salão: cadastro com nome, telefone, serviço e horário; dá pra buscar pelo telefone e editar em alguns casos.
+Projeto de agendamento pro salão: cadastro com nome, telefone, serviço e horário; dá pra buscar pelo telefone e editar.
 
 **Backend:** Python, FastAPI, SQLite.  
 **Frontend:** React, chama a API. (url da api: localhost:8000).
