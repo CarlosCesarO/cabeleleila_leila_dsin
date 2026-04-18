@@ -7,7 +7,8 @@ load_dotenv()
 
 
 def _sqlite_path() -> str:
-    path = os.getenv("SQLITE_PATH")
+    # path = os.getenv("SQLITE_PATH")
+    path = "salao.db"
     return path
 
 
