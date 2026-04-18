@@ -1,19 +1,8 @@
 import os
 import sqlite3
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-
-def _sqlite_path() -> str:
-    # path = os.getenv("SQLITE_PATH")
-    path = "salao.db"
-    return path
-
-
 def get_connection():
-    conn = sqlite3.connect(_sqlite_path())
+    conn = sqlite3.connect("salao.db")
     conn.row_factory = sqlite3.Row
     return conn
 

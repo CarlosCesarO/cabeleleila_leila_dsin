@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Agendamento from "./Agendamento";
 import MeusAgendamentos from "./MeusAgendamentos";
+import Admin from "./Admin";
 
 function App() {
   const [tela, setTela] = useState("agendar");
@@ -41,11 +42,15 @@ function App() {
           <button type="button" onClick={() => setTela("consultar")}>
             Meus agendamentos
           </button>
+          <button type="button" onClick={() => setTela("admin")}>
+            Admin
+          </button>
         </div>
       </nav>
 
       {tela === "agendar" && <Agendamento />}
       {tela === "consultar" && <MeusAgendamentos />}
+      {tela === "admin" && <Admin />}
     </div>
   );
 }

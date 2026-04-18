@@ -55,3 +55,24 @@ def atualizar_agendamento(agendamento_id: int, dados: Agendamento):
     conn.commit()
     conn.close()
     return {"ok": True, "mensagem": "Atualizado."}
+
+@app.get("/admin/agendamentos")
+def listar_todos(inicio: str = Query(None), fim: str = Query(None)):
+    query = "SELECT id, cliente_nome, cliente_telefone, servicos, data_hora FROM agendamentos"
+    params = []
+
+    if inicio and fim:
+        query += " WHERE data_hora BETWEEN ? AND ?"
+        params = [inicio, fim + " 23:59:59"]
+    elif inicio:
+        query += " WHERE data_hora >= ?"
+        params = [inicio]
+    elif fim:
+        query += " WHERE data_hora <= ?"
+        params = [fim + " 23:59:59"]
+
+    query += " ORDER BY data_hora DESC"
+    conn = get_connection()
+    rows = conn.execute(query, params).fetchall()
+    conn.close()
+    return [{**dict(r), "servicos": json.loads(r["servicos"] or "[]")} for r in rows]
