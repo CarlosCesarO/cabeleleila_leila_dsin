@@ -1,0 +1,25 @@
+# Python
+backend/.venv/
+backend/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Secrets e banco local
+backend/.env
+.env
+*.db
+
+# Node / React
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+
+# IDE / SO
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+*.log
